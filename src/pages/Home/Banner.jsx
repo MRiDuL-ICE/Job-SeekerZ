@@ -7,7 +7,7 @@ import img2 from "../../assets/img/img2.jpg";
 const Banner = () => {
   return (
     <div>
-      <div className="hero bg-base-100 min-h-screen">
+      <div className="hero w-4/5 bg-base-100 md:min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <motion.div className="">
             <motion.img
@@ -20,7 +20,7 @@ const Banner = () => {
                 repeatType: reverseEasing,
               }}
               src={img1}
-              className="w-[38rem] rounded-t-[4rem] rounded-br-[5rem] shadow-2xl border-b-[1rem] border-l-[10px] border-[#116D6E]"
+              className="md:w-[38rem] w-[10rem] rounded-t-[4rem] rounded-br-[5rem] shadow-2xl border-b-[1rem] border-l-[10px] border-[#116D6E]"
             />
             <motion.img
               animate={{ x: [100, 150, 100] }}
@@ -32,7 +32,7 @@ const Banner = () => {
                 repeatType: reverseEasing,
               }}
               src={img2}
-              className="w-[38rem] top-50 rounded-t-[4rem] rounded-br-[5rem] shadow-2xl border-b-[1rem] border-l-[10px] border-[#116D6E]"
+              className="md:w-[38rem] w-[10rem] top-50 rounded-t-[4rem] rounded-br-[5rem] shadow-2xl border-b-[1rem] border-l-[10px] border-[#116D6E]"
             />
           </motion.div>
           <motion.div

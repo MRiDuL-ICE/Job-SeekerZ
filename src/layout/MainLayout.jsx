@@ -8,7 +8,7 @@ const MainLayout = () => {
         <div className='w-10/12 mx-auto'>
             <NavBar></NavBar>
             <Outlet></Outlet>
-            <hr />
+            <hr className='' />
             <Footer></Footer>
         </div>
     );
