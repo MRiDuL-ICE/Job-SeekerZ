@@ -87,7 +87,7 @@ const JobCategories = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="w-full mx-auto px-4 py-12">
       {/* Header Section */}
       <div className="text-center mb-12">
         <h2 className="text-5xl font-bold text-[#116D6E] mb-4">
@@ -99,12 +99,12 @@ const JobCategories = () => {
       </div>
 
       {/* Categories Section */}
-      <div className="relative">
+      <div className="relative flex justify-center items-center mx-auto">
         {/* Navigation Arrow - Left */}
         {canScrollLeft && (
           <button
             onClick={() => scroll("left")}
-            className="absolute -left-10 top-10 -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 z-10 transition-opacity duration-300"
+            className="absolute mx-auto -left-10 top-10 -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-50 z-10 transition-opacity duration-300"
           >
             <IoIosArrowBack className="text-gray-600 text-xl" />
           </button>

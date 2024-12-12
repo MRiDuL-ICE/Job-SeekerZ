@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiTime } from "react-icons/bi";
 import { BsFillLightningFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 // Job Card Component
 const JobCard = ({ job }) => {
@@ -79,9 +80,10 @@ const JobCard = ({ job }) => {
             </span>
           </div>
         </div>
+        <Link to={`/jobs/${job._id}`}>
         <button className="px-6 py-2 bg-[#116D6E] text-white rounded-lg hover:bg-[#116D6E]/90 transition-colors duration-300">
           Apply Now
-        </button>
+        </button></Link>
       </div>
     </div>
   );

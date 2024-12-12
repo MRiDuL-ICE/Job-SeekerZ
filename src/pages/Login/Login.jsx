@@ -3,7 +3,7 @@ import { BsEye } from "react-icons/bs";
 import { FiEyeOff } from "react-icons/fi";
 import loginAnimation from "../../assets/lottie/login.json";
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
@@ -11,6 +11,9 @@ import { FcGoogle } from "react-icons/fc";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { userLogin, setUser, userGoogleLogin } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state || '/'
 
   const handleGooglelogin = () => {
     userGoogleLogin()
@@ -22,6 +25,7 @@ const Login = () => {
           text: "Login successfully done!",
           icon: "success",
         });
+        navigate(from)
       })
       .catch((err) => {
         console.log(err);
