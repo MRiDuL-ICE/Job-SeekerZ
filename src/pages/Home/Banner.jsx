@@ -53,7 +53,7 @@ const Banner = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <button className="btn bg-[#116D6E] text-white">Get Started</button>
+            <button className="btn px-6 py-2 bg-[#116D6E] text-white rounded-md hover:rounded-3xl hover:bg-[#116D6E]/90 transition-all duration-200">Get Started</button>
           </motion.div>
         </div>
       </div>

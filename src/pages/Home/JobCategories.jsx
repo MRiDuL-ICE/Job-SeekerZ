@@ -170,7 +170,7 @@ const JobCategories = () => {
             <Lottie className="w-44" animationData={hiringimg}></Lottie>
           </div>
         </div>
-        <button className="bg-[#116D6E] w-44 flex justify-center items-center gap-1 h-12 text-white px-6 py-2 rounded-lg hover:bg-[#155657] transition-colors duration-300">
+        <button className="bg-[#116D6E] w-44 flex justify-center items-center gap-1 h-12 text-white px-6 py-2 rounded-md hover:rounded-3xl hover:bg-[#155657] transition-all duration-200">
         <MdOutlineVerified /> Apply now
         </button>
       </div>

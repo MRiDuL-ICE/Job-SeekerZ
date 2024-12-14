@@ -153,10 +153,10 @@ const Login = () => {
                 </select>
               </div>
 
-              <div>
+              <div className="text-center">
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#116D6E] hover:bg-[#0e5b5c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#116D6E]"
+                  className="btn bg-[#116D6E] hover:bg-[#0e5a5a] text-white px-6 py-2 rounded-md hover:rounded-3xl shadow-lg transition-all duration-200"
                 >
                   Login
                 </button>

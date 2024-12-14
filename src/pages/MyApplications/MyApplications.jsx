@@ -103,7 +103,7 @@ const MyApplications = () => {
                       <img
                         src={job.company_logo}
                         alt={job.company}
-                        className="w-6 h-6 md:w-8 md:h-8 mr-1 md:mr-2 rounded-full"
+                        // className="w-6 h-6 md:w-8 md:h-8 mr-1 md:mr-2 rounded-full"
                       />
                       {job.company}
                     </td>

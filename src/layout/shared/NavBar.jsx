@@ -14,6 +14,7 @@ const NavBar = () => {
       <Link to="/">Home</Link>
       <Link>Jobs</Link>
       <Link to='/myApplications'>My Applications</Link>
+      <Link to='/addJob'>Add Job</Link>
       <Link>Contact</Link>
     </>
   );
@@ -77,17 +78,17 @@ const NavBar = () => {
           <div className="navbar-end gap-4">
             {user && user.email ? (
               <>
-                <button className="btn">{user.email}</button>{" "}
-                <button className="btn" onClick={handleLogout}>
+                <button className="px-6 py-2 rounded-md transition-all duration-200">{user.email}</button>{" "}
+                <button className="btn px-6 py-2 bg-[#116D6E] text-white rounded-md hover:rounded-3xl hover:bg-[#116D6E]/90 transition-all duration-200" onClick={handleLogout}>
                   Logout
                 </button>{" "}
               </>
             ) : (
               <>
-                <button className="btn">
+                <button className="btn px-6 py-2 bg-[#116D6E] text-white rounded-md hover:rounded-3xl hover:bg-[#116D6E]/90 transition-all duration-200">
                   <Link to="/register">Register</Link>
                 </button>
-                <button className="btn">
+                <button className="btn px-6 py-2 bg-[#116D6E] text-white rounded-md hover:rounded-3xl hover:bg-[#116D6E]/90 transition-all duration-200">
                   <Link to="/login">Login</Link>
                 </button>
               </>

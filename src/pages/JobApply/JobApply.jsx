@@ -246,12 +246,14 @@ const JobApply = () => {
             ></textarea>
           </div>
 
-          <button
+         <div className="text-center">
+         <button
             type="submit"
-            className="w-full bg-[#116D6E] text-white font-medium py-2 px-4 rounded-md hover:bg-[#134c4d]"
+            className="btn bg-[#116D6E] hover:bg-[#0e5a5a] text-white px-6 py-2 rounded-md hover:rounded-3xl shadow-lg transition-all duration-200"
           >
             Submit Application
           </button>
+         </div>
         </form>
       </div>
     </div>
