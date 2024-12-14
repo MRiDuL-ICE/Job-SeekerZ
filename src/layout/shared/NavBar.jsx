@@ -34,7 +34,7 @@ const NavBar = () => {
 
   return (
       <div className="relative w-full z-50 px-10 hover:absolute ">
-        <div className="navbar px-40 bg-base-100 shadow-lg min-h-[80px] fixed top-0 left-0 right-0 p-6 backdrop-blur-2xl">
+        <div className="navbar px-40 bg-base-100 shadow-md min-h-[80px] fixed top-0 left-0 right-0 p-6 backdrop-blur-2xl">
           <div className="navbar-start">
             <div className="dropdown">
               <div
