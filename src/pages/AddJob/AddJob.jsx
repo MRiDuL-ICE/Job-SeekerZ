@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     const tempData = Object.fromEntries(form.entries());
-    const { minimumSalary, maximumSalary, currency, ...newJob } = tempData;
-    newJob.salaryRange = { minimumSalary, maximumSalary, currency };
+    const { min, max, currency, ...newJob } = tempData;
+    newJob.salaryRange = { min, max, currency };
     newJob.requirements = newJob.requirements.split("\n");
     newJob.responsibilities = newJob.responsibilities.split("\n");
     // console.log(newJob)
@@ -29,6 +31,7 @@ const AddJob = () => {
           text: "Job successfully added!",
           icon: "success",
         });
+        navigate("/myPostedJobs")
       })
       .catch((err) => {
         Swal.fire({
@@ -52,7 +55,7 @@ const AddJob = () => {
               <label className="block font-medium mb-1">Job Title</label>
               <input
                 type="text"
-                name="jobtitle"
+                name="title"
                 placeholder="Job Title"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
@@ -90,8 +93,8 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Job Field</label>
               <select
-                defaultValue={"Select a Job Field"}
-                name="jobField"
+                defaultValue={"Select a Job Category"}
+                name="category"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
               >
@@ -159,8 +162,8 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Minimum Salary</label>
               <input
-                type="text"
-                name="minimumSalary"
+                type="number"
+                name="min"
                 placeholder="Min Salary"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
@@ -169,8 +172,8 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Maximum Salary</label>
               <input
-                type="text"
-                name="maximumSalary"
+                type="number"
+                name="max"
                 placeholder="Max Salary"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
@@ -194,7 +197,7 @@ const AddJob = () => {
               <label className="block font-medium mb-1">Company Name</label>
               <input
                 type="text"
-                name="companyName"
+                name="company"
                 placeholder="Company Name"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
@@ -204,7 +207,7 @@ const AddJob = () => {
               <label className="block font-medium mb-1">Company Logo URL</label>
               <input
                 type="url"
-                name="companyLogo"
+                name="company_logo"
                 placeholder="Company Logo URL"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
@@ -217,7 +220,7 @@ const AddJob = () => {
               <input
                 defaultValue={user?.displayName}
                 type="text"
-                name="hrName"
+                name="hr_name"
                 placeholder="Hr Name"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
@@ -228,7 +231,7 @@ const AddJob = () => {
               <input
                 defaultValue={user?.email}
                 type="email"
-                name="hrEmail"
+                name="hr_email"
                 placeholder="Hr Email"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required

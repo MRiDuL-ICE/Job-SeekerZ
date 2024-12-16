@@ -87,7 +87,7 @@ const MyApplications = () => {
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="text-center">
                 {jobs.map((job) => (
                   <tr
                     key={job._id}
@@ -99,10 +99,9 @@ const MyApplications = () => {
                     <td className="border border-gray-300 px-2 md:px-4 py-2">
                       {job.tittle}
                     </td>
-                    <td className="border border-gray-300 px-2 md:px-4 py-2 flex items-center">
-                      <img
+                    <td className="border border-gray-300 px-2 md:px-4 py-2 flex items-center gap-2">
+                      <img className="w-[40px] h-[40px]"
                         src={job.company_logo}
-                        alt={job.company}
                         // className="w-6 h-6 md:w-8 md:h-8 mr-1 md:mr-2 rounded-full"
                       />
                       {job.company}

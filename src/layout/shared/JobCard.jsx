@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const JobCard = ({ job }) => {
   const formatSalary = (min, max, currency) => {
     if (currency.toLowerCase() === "bdt") {
-      return `৳${min.toLocaleString()} - ৳${max.toLocaleString()}`;
+      return `৳${min} - ৳${max}`;
     }
     return `$${min.toLocaleString()} - $${max.toLocaleString()}`;
   };

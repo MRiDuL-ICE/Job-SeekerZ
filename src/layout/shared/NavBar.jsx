@@ -14,7 +14,9 @@ const NavBar = () => {
       <Link to="/">Home</Link>
       <Link>Jobs</Link>
       <Link to='/myApplications'>My Applications</Link>
+      <Link to='/viewApplications'>View Applications</Link>
       <Link to='/addJob'>Add Job</Link>
+      <Link to='/myPostedJobs'>Posted Jobs</Link>
       <Link>Contact</Link>
     </>
   );
