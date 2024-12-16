@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const AddJob = () => {
+  const { user } = useAuth();
 
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const tempData = Object.fromEntries(form.entries());
+    const { minimumSalary, maximumSalary, currency, ...newJob } = tempData;
+    newJob.salaryRange = { minimumSalary, maximumSalary, currency };
+    newJob.requirements = newJob.requirements.split("\n");
+    newJob.responsibilities = newJob.responsibilities.split("\n");
+    // console.log(newJob)
+    fetch(`http://localhost:3000/jobs`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        Swal.fire({
+          title: "Successful!",
+          text: "Job successfully added!",
+          icon: "success",
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Something went wrong!",
+          text: err,
+          icon: "error",
+        });
+      });
+  };
 
   return (
     <div className="my-36">
@@ -29,51 +61,53 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Location</label>
               <select
+                defaultValue={"Select Location"}
                 name="location"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
               >
-              <option value="Select-Location">Select Location</option>
-              <option value="On-Site">On-Site</option>
-              <option value="Hybrid">Hybrid</option>
-              <option value="Fully-Remote">Fully-Remote</option>
-              
-            </select>
+                <option value="Select-Location">Select Location</option>
+                <option value="On-Site">On-Site</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Fully-Remote">Fully-Remote</option>
+              </select>
             </div>
             <div>
               <label className="block font-medium mb-1">Job Type</label>
               <select
+                defaultValue={"Pick a Job Type"}
                 name="jobType"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
               >
-              <option value="Pick-a-Job-Type">Pick a Job Type</option>
-              <option value="Full-Time">Full-Time</option>
-              <option value="Part-Time">Part-Time</option>
-              <option value="Internship">Internship</option>
-              <option value="">Contractual</option>
-            </select>
+                <option value="Pick-a-Job-Type">Pick a Job Type</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Internship">Internship</option>
+                <option value="">Contractual</option>
+              </select>
             </div>
             <div>
               <label className="block font-medium mb-1">Job Field</label>
               <select
+                defaultValue={"Select a Job Field"}
                 name="jobField"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
               >
-              <option value="Select-Job-Field">Select a Job Field</option>
-              <option value="Engineering">Engineering</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Finanace">Finanace</option>
-              <option value="Teaching">Teaching</option>
-              <option value="Sales">Sales</option>
-              <option value="">Management</option>
-              <option value="">Data Science</option>
-              <option value="">Artificial Intelligence</option>
-              <option value="">Machine Learning</option>
-              <option value="">Graphic Design</option>
-              <option value="">Deveopment</option>
-            </select>
+                <option value="Select-Job-Field">Select a Job Field</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Finanace">Finanace</option>
+                <option value="Teaching">Teaching</option>
+                <option value="Sales">Sales</option>
+                <option value="">Management</option>
+                <option value="">Data Science</option>
+                <option value="">Artificial Intelligence</option>
+                <option value="">Machine Learning</option>
+                <option value="">Graphic Design</option>
+                <option value="">Deveopment</option>
+              </select>
             </div>
             <div>
               <label className="block font-medium mb-1">
@@ -125,7 +159,7 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Minimum Salary</label>
               <input
-                type="number"
+                type="text"
                 name="minimumSalary"
                 placeholder="Min Salary"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
@@ -135,7 +169,7 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Maximum Salary</label>
               <input
-                type="number"
+                type="text"
                 name="maximumSalary"
                 placeholder="Max Salary"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
@@ -145,6 +179,7 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Currency</label>
               <select
+                defaultValue={"Currency"}
                 name="currency"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
               >
@@ -166,7 +201,7 @@ const AddJob = () => {
               />
             </div>
             <div>
-              <label className="block font-medium mb-1">Company Logo</label>
+              <label className="block font-medium mb-1">Company Logo URL</label>
               <input
                 type="url"
                 name="companyLogo"
@@ -180,6 +215,7 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Hr Name</label>
               <input
+                defaultValue={user?.displayName}
                 type="text"
                 name="hrName"
                 placeholder="Hr Name"
@@ -190,6 +226,7 @@ const AddJob = () => {
             <div>
               <label className="block font-medium mb-1">Hr Email</label>
               <input
+                defaultValue={user?.email}
                 type="email"
                 name="hrEmail"
                 placeholder="Hr Email"
