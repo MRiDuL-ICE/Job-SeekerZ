@@ -21,11 +21,6 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
-        const userMail = { email: email };
-        axios.post(`http://localhost:3000/jwt`, userMail)
-        .then((res) => {
-          console.log(res.data);
-        });
         Swal.fire({
           title: "Successful!",
           text: "Login successfully done!",
@@ -54,10 +49,12 @@ const Login = () => {
         const user = res.user;
         setUser(user);
         const userMail = { email: email };
-        axios.post(`http://localhost:3000/jwt`, userMail)
-        .then((res) => {
-          console.log(res.data);
-        });
+        axios.post(`http://localhost:3000/jwt`, userMail, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
         Swal.fire({
           title: "Successful!",
           text: "Login successfully done!",
