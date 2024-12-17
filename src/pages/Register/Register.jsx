@@ -19,8 +19,7 @@ const Register = () => {
     const email = form.get("email");
     const password = form.get("password");
     const role = form.get("role");
-    const user = { name, email, password, role };
-    console.log(user);
+    // const user = { name, email, password, role };
 
     newUser(email,password)
     .then(res => {

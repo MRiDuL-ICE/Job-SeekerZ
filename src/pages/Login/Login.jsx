@@ -7,25 +7,31 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { userLogin, setUser, userGoogleLogin } = useContext(AuthContext);
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from = location?.state || '/'
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
 
   const handleGooglelogin = () => {
     userGoogleLogin()
       .then((res) => {
         const user = res.user;
         setUser(user);
+        const userMail = { email: email };
+        axios.post(`http://localhost:3000/jwt`, userMail)
+        .then((res) => {
+          console.log(res.data);
+        });
         Swal.fire({
           title: "Successful!",
           text: "Login successfully done!",
           icon: "success",
         });
-        navigate(from)
+        navigate(from);
       })
       .catch((err) => {
         console.log(err);
@@ -47,11 +53,17 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         setUser(user);
+        const userMail = { email: email };
+        axios.post(`http://localhost:3000/jwt`, userMail)
+        .then((res) => {
+          console.log(res.data);
+        });
         Swal.fire({
           title: "Successful!",
           text: "Login successfully done!",
           icon: "success",
         });
+        navigate(from);
       })
       .catch((err) => {
         console.log(err);
@@ -68,18 +80,18 @@ const Login = () => {
       <div className="bg-base-100 flex md:flex-row flex-col-reverse  justify-center py-12 sm:px-6 items-center">
         <div className="mt-2 sm:mx-auto sm:w-full w-full">
           <div className="bg-white py-10 shadow-xl sm:rounded-lg px-10  w-full md:w-[36rem] mx-auto">
-                <h2 className="mt-6 text-center text-3xl font-bold text-[#116D6E]">
-                  Login To Your Account
-                </h2>
-                <div>
-                  <button
-                    onClick={handleGooglelogin}
-                    className="btn bg-white border-1 border-base-300 flex my-6 mx-auto justify-center items-center"
-                  >
-                    <FcGoogle className="text-lg" />
-                    Login with Google
-                  </button>
-                </div>
+            <h2 className="mt-6 text-center text-3xl font-bold text-[#116D6E]">
+              Login To Your Account
+            </h2>
+            <div>
+              <button
+                onClick={handleGooglelogin}
+                className="btn bg-white border-1 border-base-300 flex my-6 mx-auto justify-center items-center"
+              >
+                <FcGoogle className="text-lg" />
+                Login with Google
+              </button>
+            </div>
             <form className="space-y-6 mx-auto" onSubmit={handleSubmit}>
               <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <p className="flex mx-auto justify-center items-center">Or</p>
