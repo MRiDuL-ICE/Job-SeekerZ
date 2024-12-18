@@ -7,7 +7,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -49,12 +48,7 @@ const Login = () => {
         const user = res.user;
         setUser(user);
         const userMail = { email: email };
-        axios.post(`http://localhost:3000/jwt`, userMail, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-          });
+
         Swal.fire({
           title: "Successful!",
           text: "Login successfully done!",

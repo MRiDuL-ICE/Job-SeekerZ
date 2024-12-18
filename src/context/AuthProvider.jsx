@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
-import { tr } from "motion/react-client";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -29,15 +29,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const userGoogleLogin = () => {
-    setLoading(true)
-    return signInWithPopup(auth, provider)
-  }
-
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
 
   const userLogout = () => {
-    setLoading(true)
-    return signOut(auth)
-  } 
+    setLoading(true);
+    return signOut(auth);
+  };
 
   const authInfo = {
     user,
@@ -47,13 +46,37 @@ const AuthProvider = ({ children }) => {
     newUser,
     userLogin,
     userLogout,
-    userGoogleLogin
+    userGoogleLogin,
   };
 
   useEffect(() => {
     const unsubcribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      console.log("State captured", currentUser?.email);
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+        axios
+          .post(`http://localhost:3000/jwt`, user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("login", res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post(
+            "http://localhost:3000/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log("Logout", res.data);
+            setLoading(false);
+          });
+      }
 
       return () => {
         unsubcribe();
