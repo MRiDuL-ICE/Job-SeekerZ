@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddJob = () => {
   const { user } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const AddJob = () => {
     newJob.requirements = newJob.requirements.split("\n");
     newJob.responsibilities = newJob.responsibilities.split("\n");
     // console.log(newJob)
-    fetch(`http://localhost:3000/jobs`, {
+    fetch(`https://job-seekerz-server.vercel.app/jobs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -31,7 +31,7 @@ const AddJob = () => {
           text: "Job successfully added!",
           icon: "success",
         });
-        navigate("/myPostedJobs")
+        navigate("/myPostedJobs");
       })
       .catch((err) => {
         Swal.fire({

@@ -33,7 +33,7 @@ const JobApply = () => {
       coverLetter,
     };
 
-    fetch("http://localhost:3000/job-applications", {
+    fetch("https://job-seekerz-server.vercel.app/job-applications", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -246,14 +246,14 @@ const JobApply = () => {
             ></textarea>
           </div>
 
-         <div className="text-center">
-         <button
-            type="submit"
-            className="btn bg-[#116D6E] hover:bg-[#0e5a5a] text-white px-6 py-2 rounded-md hover:rounded-3xl shadow-lg transition-all duration-200"
-          >
-            Submit Application
-          </button>
-         </div>
+          <div className="text-center">
+            <button
+              type="submit"
+              className="btn bg-[#116D6E] hover:bg-[#0e5a5a] text-white px-6 py-2 rounded-md hover:rounded-3xl shadow-lg transition-all duration-200"
+            >
+              Submit Application
+            </button>
+          </div>
         </form>
       </div>
     </div>

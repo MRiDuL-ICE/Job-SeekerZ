@@ -7,13 +7,13 @@ const MyPostedJobs = () => {
   const [jobs, setJobs] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:3000/jobs?email=${user?.email}`)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        setJobs(data)
-    })
-  },[user.email])
+    fetch(`https://job-seekerz-server.vercel.app/jobs?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setJobs(data);
+      });
+  }, [user.email]);
   return (
     <div>
       <div className="my-36">
@@ -29,9 +29,7 @@ const MyPostedJobs = () => {
               <table className="w-full table-auto border-collapse border border-gray-200 shadow-lg">
                 <thead className="bg-gray-100">
                   <tr>
-                    <th className="border border-gray-300 py-2">
-                      Index
-                    </th>
+                    <th className="border border-gray-300 py-2">Index</th>
                     <th className="border border-gray-300 px-4 py-2">
                       Job Title
                     </th>
@@ -81,13 +79,14 @@ const MyPostedJobs = () => {
                       </td>
                       <td className="border border-gray-300 px-4 py-2 flex space-x-2 justify-center">
                         {/* View Applications Button */}
-                       <button>
-                       <Link to={`/viewApplications/${job._id}`}
-                          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded shadow"
-                        >
-                          View Applications
-                        </Link>
-                       </button>
+                        <button>
+                          <Link
+                            to={`/viewApplications/${job._id}`}
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded shadow"
+                          >
+                            View Applications
+                          </Link>
+                        </button>
 
                         {/* Update Job Button */}
                         <button

@@ -10,14 +10,14 @@ const MyApplications = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    // fetch(`http://localhost:3000/job-application?email=${user.email}`)
+    // fetch(`https://job-seekerz-server.vercel.app/job-application?email=${user.email}`)
     //   .then((res) => res.json())
     //   .then((data) => {
     //     setJobs(data);
     //   });
 
     // axios
-    //   .get(`http://localhost:3000/job-application?email=${user.email}`, {
+    //   .get(`https://job-seekerz-server.vercel.app/job-application?email=${user.email}`, {
     //     withCredentials: true,
     //   })
     //   .then((res) => {
@@ -39,7 +39,7 @@ const MyApplications = () => {
 
   const handleWithdraw = (id) => {
     console.log(id);
-    fetch(`http://localhost:3000/job-application/${id}`, {
+    fetch(`https://job-seekerz-server.vercel.app/job-application/${id}`, {
       method: "DELETE",
     });
     Swal.fire({

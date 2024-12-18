@@ -4,33 +4,32 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const ViewApplications = () => {
-    const {user} = useAuth()
+  const { user } = useAuth();
   const applications = useLoaderData();
   const [statuses, setStatuses] = useState({});
 
   const handleStatusChange = (id, e) => {
-
     const data = {
-        status: e.target.value
-    }
+      status: e.target.value,
+    };
 
-    fetch(`http://localhost:3000/job-applications/${id}`, {
-        method: "PATCH",
-        headers: {
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(data)
+    fetch(`https://job-seekerz-server.vercel.app/job-applications/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.modifiedCount){
-            Swal.fire({
-                title: "Updated!",
-                text: "Satus Has Been Updated!",
-                icon: "success",
-              });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Updated!",
+            text: "Satus Has Been Updated!",
+            icon: "success",
+          });
         }
-    })
+      });
   };
 
   return (
@@ -110,9 +109,7 @@ const ViewApplications = () => {
                   <select
                     id={`status-${applicant._id}`}
                     value={statuses[applicant._id] || "Pending"}
-                    onChange={(e) =>
-                      handleStatusChange(applicant._id, e)
-                    }
+                    onChange={(e) => handleStatusChange(applicant._id, e)}
                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#116D6E]"
                   >
                     <option value="Pending">Pending</option>
