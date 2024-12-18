@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyApplications = () => {
   const { user, loading } = useAuth();
   const [jobs, setJobs] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     // fetch(`http://localhost:3000/job-application?email=${user.email}`)
@@ -14,12 +16,17 @@ const MyApplications = () => {
     //     setJobs(data);
     //   });
 
-    axios.get(`http://localhost:3000/job-application?email=${user.email}`, {withCredentials: true})
-    .then(res => {
-      setJobs(res.data)
-    })
+    // axios
+    //   .get(`http://localhost:3000/job-application?email=${user.email}`, {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     setJobs(res.data);
+    //   });
 
-
+    axiosSecure.get(`/job-application?email=${user.email}`).then((res) => {
+      setJobs(res.data);
+    });
   }, [user.email]);
 
   if (loading) {
@@ -45,9 +52,8 @@ const MyApplications = () => {
       confirmButtonText: "Yes, delete it!",
     })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.isConfirmed) {
-          
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -57,13 +63,13 @@ const MyApplications = () => {
           setJobs(rem);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         Swal.fire({
           title: "Something Wrong!",
           text: err,
-          icon: "error"
+          icon: "error",
         });
-      })
+      });
   };
 
   return (
@@ -108,7 +114,8 @@ const MyApplications = () => {
                       {job.tittle}
                     </td>
                     <td className="border border-gray-300 px-2 md:px-4 py-2 flex items-center gap-2">
-                      <img className="w-[40px] h-[40px]"
+                      <img
+                        className="w-[40px] h-[40px]"
                         src={job.company_logo}
                         // className="w-6 h-6 md:w-8 md:h-8 mr-1 md:mr-2 rounded-full"
                       />
