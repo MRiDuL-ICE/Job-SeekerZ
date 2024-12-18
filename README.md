@@ -145,4 +145,3 @@ src/
 ## 📧 Contact
 
 Your Name - abdulwahab22400@gmail.com
-Project Link: [https://github.com/your-username/career-code](https://github.com/your-username/career-code)
