@@ -224,6 +224,7 @@ const AddJob = () => {
                 placeholder="Hr Name"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
+                readOnly
               />
             </div>
             <div>
@@ -235,6 +236,7 @@ const AddJob = () => {
                 placeholder="Hr Email"
                 className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#116D6E]"
                 required
+                readOnly
               />
             </div>
           </div>
