@@ -7,7 +7,7 @@ const MyPostedJobs = () => {
   const [jobs, setJobs] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`https://job-seekerz-server.vercel.app/jobs?email=${user?.email}`)
+    fetch(`http://localhost:3000/jobs?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

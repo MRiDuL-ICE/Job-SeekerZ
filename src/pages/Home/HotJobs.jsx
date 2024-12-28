@@ -8,7 +8,7 @@ const HotJobs = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://job-seekerz-server.vercel.app/jobs")
+    fetch("http://localhost:3000/jobs")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch jobs");

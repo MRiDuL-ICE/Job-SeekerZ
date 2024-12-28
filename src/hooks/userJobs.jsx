@@ -6,12 +6,10 @@ const userJobs = (sort) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`https://job-seekerz-server.vercel.app/jobs?sort=${sort}`)
-      .then((res) => {
-        setLoading(false);
-        setJobs(res.data);
-      });
+    axios.get(`http://localhost:3000/jobs?sort=${sort}`).then((res) => {
+      setLoading(false);
+      setJobs(res.data);
+    });
   }, [sort]);
   return { jobs, loading };
 };
